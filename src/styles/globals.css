@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	color: var(--foreground);
+	/* background: var(--background); */
+	font-family: 'Fira Code', monospace;
+}
+
+.toggle {
+	/* overflow: hidden; */
+	transition: all 1s ease-out;
+	/* max-height: 0; Collapsed */
+}
+
+@media screen and (max-width: 450px) {
+	.xs {
+		padding-top: 110px !important;
+	}
+}
+
+img:focus,
+/* .code-container:focus, */
+input:focus {
+	outline: 1px solid skyblue !important;
+}
