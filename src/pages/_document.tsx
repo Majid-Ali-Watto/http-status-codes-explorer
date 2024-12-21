@@ -8,10 +8,16 @@ class MyDocument extends Document {
         <Head>
           {/* Import Fira Code font from Google Fonts */}
           <link
+            rel="preload"
             href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap"
-            rel="stylesheet"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
           />
+
+          <link rel="icon" href="/http-icon.png" />
         </Head>
+
         <body>
           <Main />
           <NextScript />

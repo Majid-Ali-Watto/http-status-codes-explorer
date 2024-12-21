@@ -17,11 +17,12 @@ export default function DownloadButton({ filteredCode }: CodeListProps) {
             tabIndex={2}
             onClick={handleDownload}
             className="p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-lg transition"
-            aria-label="Download PDF"
+            aria-label="Download HTTP Status Codes as PDF"
+            role="button" // Added role="button" for better semantic structure
         >
             <Image
                 src="/download.png"
-                alt="Download"
+                alt="Download HTTP Status Codes PDF" // Updated alt text for clarity
                 width={30}
                 height={30}
                 className="cursor-pointer"
