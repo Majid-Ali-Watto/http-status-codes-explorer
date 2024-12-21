@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import { useState } from "react";
 import statusCodes from "@/assets/codes-list";
 import Head from "next/head";
-
 export default function Home() {
   const [filteredCode, setFilteredCode] = useState(statusCodes)
   const structuredData = {
