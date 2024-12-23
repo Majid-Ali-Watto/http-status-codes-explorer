@@ -26,6 +26,7 @@ export default function DownloadButton({ filteredCode }: CodeListProps) {
                 width={30}
                 height={30}
                 className="cursor-pointer"
+                priority={false}
             />
         </button>
     );
