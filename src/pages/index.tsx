@@ -5,6 +5,7 @@ import { useState, use } from "react";
 import statusCodes from "@/assets/codes-list";
 import Head from "next/head";
 import { UrlContext } from "./_app";
+import { keywords } from "@/assets/keywords";
 export default function Home() {
   const [filteredCode, setFilteredCode] = useState(statusCodes)
   const { url } = use(UrlContext)
@@ -22,7 +23,7 @@ export default function Home() {
       <Head>
         <title>HTTP Status Codes Explorer</title>
         <meta name="description" content="Explore HTTP status codes with descriptions and examples. Filter, search, and download codes as PDF." />
-        <meta name="keywords" content={"HTTP, Status Codes, HTTP Codes, Developer Tools,"+(statusCodes.map((code)=>code.code+' '+code.title+','+code.description+' '+code.example)).join(',')} />
+        <meta name="keywords" content={keywords} />
         <meta name="author" content="Majid Ali - Full Stack Web Developer" />
         <meta property="og:title" content="HTTP Status Codes Explorer" />
         <meta property="og:description" content="Explore HTTP status codes with descriptions and examples. Filter, search, and download codes as PDF." />

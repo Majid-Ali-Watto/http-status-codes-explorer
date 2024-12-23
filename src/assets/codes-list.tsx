@@ -382,5 +382,4 @@ const statusCodes: StatusCodeDetails[] = [
         example: "GET /resource when the user is not authenticated on the network"
     }
 ];
-
 export default statusCodes
