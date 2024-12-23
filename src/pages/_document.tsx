@@ -14,7 +14,7 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
-
+          <meta name="google-site-verification" content="7fuQzUlrmv1KCo50jYkC4ePEGz17z9zIaeza4ZLHl_E" />
           <link rel="icon" href="/http-icon.png" />
         </Head>
 
