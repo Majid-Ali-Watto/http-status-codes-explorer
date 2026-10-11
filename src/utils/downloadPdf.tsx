@@ -1,14 +1,10 @@
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import autoTable, { RowInput } from "jspdf-autotable";
+import { StatusCodeDetails } from "@/types";
+import { formatResponseHeaders } from "@/utils/formatHeaders";
 
 const FILE_NAME = "http-status-codes-by-Majid-Ali";
 
-interface StatusCodeDetails {
-    code: number;
-    title: string;
-    description: string;
-    example: string;
-}
 
 const downloadPDFTable = (statusCodes: Array<StatusCodeDetails>) => {
     const doc = new jsPDF();
@@ -19,14 +15,32 @@ const downloadPDFTable = (statusCodes: Array<StatusCodeDetails>) => {
     doc.setFont("Helvetica", "bold");
     doc.text("Http Status Codes Table", 14, 15);
 
-    // Define table content and styles
-    const tableColumn = ["Name", "Description", "Example", "Code"];
-    const tableRows = statusCodes.map((command) => [command.title || "", command.description || "", command.example || "", command.code || ""]);
+    // Each code is a summary row followed by one full-width monospace row with its examples.
+    const tableColumn = ["Code", "Name", "Description", "Example"];
+    const tableRows: RowInput[] = statusCodes.flatMap((status) => [
+        [
+            { content: String(status.code), styles: { fontStyle: "bold", fillColor: [235, 242, 255] } },
+            { content: status.title, styles: { fontStyle: "bold", fillColor: [235, 242, 255] } },
+            { content: status.description, styles: { fillColor: [235, 242, 255] } },
+            { content: status.example, styles: { fillColor: [235, 242, 255] } },
+        ],
+        [{
+            colSpan: 4,
+            content: [
+                "Request payload:", status.payload ?? "(none)",
+                "",
+                "Response headers:", formatResponseHeaders(status),
+                "",
+                "Response body:", status.response ?? "(none)",
+            ].join("\n"),
+            styles: { font: "courier", fontSize: 8, textColor: [40, 40, 40] },
+        }],
+    ]);
     const columnStyles = {
-        0: { cellWidth: 50 },
+        0: { cellWidth: 16 },
         1: { cellWidth: 40 },
-        2: { cellWidth: 40 },
-        3: { cellWidth: 50 }
+        2: { cellWidth: 64 },
+        3: { cellWidth: "auto" as const }
     };
 
     // Add table to PDF
@@ -36,9 +50,10 @@ const downloadPDFTable = (statusCodes: Array<StatusCodeDetails>) => {
         startY: 30,
         columnStyles,
         theme: "grid",
-        styles: { fontSize: 12, cellPadding: 3, overflow: "linebreak" },
-        headStyles: { fillColor: [0, 100, 255], textColor: [255, 255, 255], fontSize: 14, fontStyle: "bold" },
+        styles: { fontSize: 10, cellPadding: 2.5, overflow: "linebreak" },
+        headStyles: { fillColor: [0, 100, 255], textColor: [255, 255, 255], fontSize: 11, fontStyle: "bold" },
         pageBreak: "auto",
+        rowPageBreak: "avoid",
         didDrawPage: (data) => {
             pageCount = data.pageNumber;
             addFooter(doc, pageCount);

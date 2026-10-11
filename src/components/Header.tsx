@@ -3,12 +3,13 @@ import DownloadButton from "./DownloadButton";
 import Search from "./Search";
 import { StatusCodeDetails } from '@/types';
 
-interface CodeListProps {
-    setFilteredCode: React.Dispatch<React.SetStateAction<StatusCodeDetails[]>>;
+interface HeaderProps {
+    query: string;
+    onQueryChange: (query: string) => void;
     filteredCode: StatusCodeDetails[];
 }
 
-const Header: React.FC<CodeListProps> = ({ setFilteredCode, filteredCode }) => {
+const Header: React.FC<HeaderProps> = ({ query, onQueryChange, filteredCode }) => {
     return (
         <header
             className="z-50 fixed top-0 left-0 w-full bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center gap-3"
@@ -18,7 +19,7 @@ const Header: React.FC<CodeListProps> = ({ setFilteredCode, filteredCode }) => {
                 HTTP Status Codes Explorer
             </h1>
             <div className="flex flex-wrap justify-between items-center gap-3">
-                <Search setFilteredCode={setFilteredCode} />
+                <Search query={query} onQueryChange={onQueryChange} />
                 {filteredCode?.length > 0 ? (
                     <DownloadButton filteredCode={filteredCode} />
                 ) : (

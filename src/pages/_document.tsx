@@ -6,13 +6,11 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* Import Fira Code font from Google Fonts */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
-            rel="preload"
+            rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
           />
           <meta name="google-site-verification" content="7fuQzUlrmv1KCo50jYkC4ePEGz17z9zIaeza4ZLHl_E" />
           <link rel="icon" href="/http-icon.png" />
